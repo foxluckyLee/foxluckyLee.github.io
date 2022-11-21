@@ -4,11 +4,24 @@
   
     
     <entry>
-      <title>一只羊数星星</title>
+      <title>基于Hexo的网站搭建</title>
+      <link href="/2022/112145210.html"/>
+      <url>/2022/112145210.html</url>
+      
+        <content type="html"><![CDATA[<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>app下载安装地址尽量放在英文文件夹（拼音都行）</p><h3 id="1、git的下载"><a href="#1、git的下载" class="headerlink" title="1、git的下载"></a>1、git的下载</h3><p>Git官网下载：  <a href="https://git-scm.com/">https://git-scm.com/</a></p><p>国内镜像下载 ：<a href="https://npm.taobao.org/mirrors/git-for-windows/v2.22.0.windows.1/Git-2.22.0-64-bit.exe">https://npm.taobao.org/mirrors/git-for-windows/v2.22.0.windows.1/Git-2.22.0-64-bit.exe</a> </p><p>​    ### 2、Node.js下载安装</p><p>下载地址：<a href="http://nodejs.cn/download/">http://nodejs.cn/download/</a></p><p>安装一般是 全部下一步</p><p>Node.js 环境配置  参考文档：<a href="https://blog.csdn.net/qq_43285335/article/details/90696126">(66条消息) nodejs下载安装及配置环境_S-A的博客-CSDN博客</a> </p><h3 id="3-下载、登录网易UU加速器"><a href="#3-下载、登录网易UU加速器" class="headerlink" title="3.下载、登录网易UU加速器"></a>3.下载、登录网易UU加速器</h3><p>不用时记得关掉，节约资源哦</p><h3 id="4-创建github-账号"><a href="#4-创建github-账号" class="headerlink" title="4.创建github 账号"></a>4.创建github 账号</h3><p>创建github账号：<a href="https://www.bilibili.com/video/BV1Rt4y1k7it/?p=8&spm_id_from=pageDriver&vd_source=9fe38ec85a281226e622d7dd5456a3b2">8_创建第一篇个人博客以及网站加速的说明_哔哩哔哩_bilibili</a>  p1 p2集</p><h3 id="5-开始搭建：准备工具-hexo-script使用文档-gitbook-io"><a href="#5-开始搭建：准备工具-hexo-script使用文档-gitbook-io" class="headerlink" title="5.开始搭建：准备工具 - hexo-script使用文档 (gitbook.io)"></a>5.开始搭建：<a href="https://hexoscript.gitbook.io/hexo-script/v/1.3-1/shi-yong-bu-zhou/zhun-bei-gong-ju">准备工具 - hexo-script使用文档 (gitbook.io)</a></h3><p> 搭建若网站界面不出现需要 使用 hexo s  / hexo g /hexo d才能出现主题</p><h3 id="6-搭建主题推荐-66条消息-基于Hexo的matery主题搭建博客并优化-悟尘的博客-CSDN博客"><a href="#6-搭建主题推荐-66条消息-基于Hexo的matery主题搭建博客并优化-悟尘的博客-CSDN博客" class="headerlink" title="6.搭建主题推荐(66条消息) 基于Hexo的matery主题搭建博客并优化_悟尘的博客-CSDN博客"></a>6.搭建主题推荐<a href="https://blog.csdn.net/jspnetcn/article/details/104111651">(66条消息) 基于Hexo的matery主题搭建博客并优化_悟尘的博客-CSDN博客</a></h3><h3 id="7-Hexo博客教程（二）-如何写作新文章并发布-腾讯云开发者社区-腾讯云-tencent-com"><a href="#7-Hexo博客教程（二）-如何写作新文章并发布-腾讯云开发者社区-腾讯云-tencent-com" class="headerlink" title="7 .Hexo博客教程（二）| 如何写作新文章并发布 - 腾讯云开发者社区-腾讯云 (tencent.com)"></a>7 .<a href="https://cloud.tencent.com/developer/article/1662733">Hexo博客教程（二）| 如何写作新文章并发布 - 腾讯云开发者社区-腾讯云 (tencent.com)</a></h3><p><a href="https://zhuanlan.zhihu.com/p/132823826">使用hexo新建、编辑并预览文章 - 知乎 (zhihu.com)</a> </p><h2 id="在最后的话"><a href="#在最后的话" class="headerlink" title="在最后的话"></a>在最后的话</h2><p>本站的搭建基于b站up主 ：计算机毕设开发 ；</p><p>如出现报错、百度  或者重装</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>基于Hexo个人博客的搭建</title>
       <link href="/2022/111922445.html"/>
       <url>/2022/111922445.html</url>
       
-        <content type="html"><![CDATA[<p>欢迎来到一只羊数星星的神秘基地</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+        <content type="html"><![CDATA[<p>欢迎来到一只羊数星星的神秘基地</p><h1 id="小破绽"><a href="#小破绽" class="headerlink" title="小破绽"></a>小破绽</h1><p>网站建立的初衷仅为交流学习分享各种知识，目前主要为前端，各位友友看到欢迎交流学习</p><p>希望我们会越来越好</p>]]></content>
       
       
       
