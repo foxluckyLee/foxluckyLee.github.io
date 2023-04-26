@@ -4,6 +4,19 @@
   
   
   <entry>
+    <title></title>
+    <link href="/2023/04/25/vue2%E5%92%8Cvue3%E9%85%8D%E7%BD%AEproxy%E4%BB%A3%E7%90%86/"/>
+    <url>/2023/04/25/vue2%E5%92%8Cvue3%E9%85%8D%E7%BD%AEproxy%E4%BB%A3%E7%90%86/</url>
+    
+    <content type="html"><![CDATA[<h1 id="vue2和vue3配置proxy代理"><a href="#vue2和vue3配置proxy代理" class="headerlink" title="vue2和vue3配置proxy代理"></a>vue2和vue3配置proxy代理</h1><h3 id="vue2配置proxy代理"><a href="#vue2配置proxy代理" class="headerlink" title="vue2配置proxy代理"></a>vue2配置proxy代理</h3><ol><li><p>在vue.config.js，devServe配置proxy代理</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-attr">proxy</span>:&#123;<br>    [process.<span class="hljs-property">env</span>.<span class="hljs-property">VUE_APP_URL</span>]:&#123;<br>     <span class="hljs-comment">//taget+真实地址   </span><br>        <span class="hljs-attr">taeget</span>:process.<span class="hljs-property">env</span>.<span class="hljs-property">VUE_APP_TARGET</span>,<br>            <span class="hljs-attr">pathRewrite</span>:&#123;<br>                [<span class="hljs-string">&#x27;^&#x27;</span>+process.<span class="hljs-property">env</span>.<span class="hljs-property">VUE_APP_URL</span>]:<span class="hljs-string">&#x27;&#x27;</span><br>            &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure><h3 id="vue3-配置代理"><a href="#vue3-配置代理" class="headerlink" title="vue3 配置代理"></a>vue3 配置代理</h3><p>1.再vite.config.ts,server中配置</p><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-attr">proxy</span>:&#123;<br>    <span class="hljs-string">&#x27;/api&#x27;</span>:&#123;<br>        env.<span class="hljs-property">VITE_APP_TARGET_API</span>,<br>          <span class="hljs-attr">rewrite</span>:<span class="hljs-function">(<span class="hljs-params">path</span>)=&gt;</span>path.<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/^\/api/</span>,<span class="hljs-string">&#x27;&#x27;</span>),<br>              <span class="hljs-attr">secure</span>:<span class="hljs-literal">false</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li></ol>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>基于Hexo的网站搭建</title>
     <link href="/2023/04/21/%E5%9F%BA%E4%BA%8EHexo%E7%9A%84%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/"/>
     <url>/2023/04/21/%E5%9F%BA%E4%BA%8EHexo%E7%9A%84%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/</url>
