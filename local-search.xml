@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>实现数组去重的方法</title>
+    <link href="/2023/05/19/%E5%AE%9E%E7%8E%B0%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D%E7%9A%84%E6%96%B9%E6%B3%95/"/>
+    <url>/2023/05/19/%E5%AE%9E%E7%8E%B0%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D%E7%9A%84%E6%96%B9%E6%B3%95/</url>
+    
+    <content type="html"><![CDATA[<h1 id="实现数组去重的方法"><a href="#实现数组去重的方法" class="headerlink" title="实现数组去重的方法"></a>实现数组去重的方法</h1><h4 id="1、set"><a href="#1、set" class="headerlink" title="1、set"></a>1、set</h4><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs actionscript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">repalit</span><span class="hljs-params">(arr)</span>&#123;<br>    <span class="hljs-keyword">var</span> a = <span class="hljs-keyword">new</span> <span class="hljs-keyword">set</span>(arr)<br>    <span class="hljs-keyword">return</span> [...a]<br>&#125;<br></code></pre></td></tr></table></figure><h4 id="2、indexof-数组下标为-1-的-push-进去"><a href="#2、indexof-数组下标为-1-的-push-进去" class="headerlink" title="2、indexof (数组下标为-1 的 push 进去)"></a>2、indexof (数组下标为-1 的 push 进去)</h4><figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs arcade"><span class="hljs-number">1</span>、使用 forEach<br><br>let newArr = []<br>arr.forEach(<span class="hljs-function">(<span class="hljs-params">item,index</span>)=&gt;</span>&#123;<br>    <span class="hljs-keyword">if</span>(newArr.<span class="hljs-built_in">indexof</span>(item) === <span class="hljs-number">-1</span>)&#123;<br>        newArr.<span class="hljs-built_in">push</span>(item)<br>    &#125;<br>&#125;)<br><br><br><span class="hljs-number">2</span>、使用<span class="hljs-built_in">reduce</span><br> let newArr = arr.<span class="hljs-built_in">reduce</span>(<span class="hljs-function">(<span class="hljs-params">cur,arr</span>)=&gt;</span>&#123;<br>     <span class="hljs-keyword">if</span>(cur.<span class="hljs-built_in">indexof</span>(cur) ===  <span class="hljs-number">-1</span> )&#123;<br>         cur.<span class="hljs-built_in">push</span>(cur)<br>     &#125;<br>     <span class="hljs-keyword">return</span> cur<br> &#125;,[])<br><br><span class="hljs-number">3</span>、使用<span class="hljs-built_in">filter</span>()<br>const newArr = arr.<span class="hljs-built_in">filter</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">item,index,self</span>)&#123;<br>    <span class="hljs-keyword">return</span> self.<span class="hljs-built_in">indexof</span>(item) === index<br>&#125;)<br></code></pre></td></tr></table></figure><h4 id="3、includes-用-reduce-做累加计算"><a href="#3、includes-用-reduce-做累加计算" class="headerlink" title="3、includes 用 reduce 做累加计算"></a>3、includes 用 reduce 做累加计算</h4><figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs haxe">const <span class="hljs-keyword">new</span><span class="hljs-type">Arr</span> = arr.reduce((<span class="hljs-keyword">new</span><span class="hljs-type">Arr</span>,index) =&gt; &#123;<br>    <span class="hljs-keyword">if</span>(!<span class="hljs-keyword">new</span><span class="hljs-type">Arr</span>.includes(index))&#123;<br>        <span class="hljs-keyword">new</span><span class="hljs-type">Arr</span>.push(item)<br>    &#125;<br>&#125;)<br></code></pre></td></tr></table></figure><h4 id="4、双-for-＋-splice"><a href="#4、双-for-＋-splice" class="headerlink" title="4、双 for ＋ splice"></a>4、双 for ＋ splice</h4><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs scss">let<br><span class="hljs-built_in">for</span>(let i = <span class="hljs-number">0</span> ; i &lt; arr.length ; i ++)&#123;<br>    <span class="hljs-built_in">for</span>( let j  = i+ <span class="hljs-number">1</span> ; i&lt; arr.length ; j++)&#123;<br>        <span class="hljs-built_in">if</span>(arr[i] == arr[j])&#123;<br>            arr<span class="hljs-selector-class">.splice</span>(i , <span class="hljs-number">1</span>)<br>            <span class="hljs-selector-tag">i</span>--<br>            j--<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>blog</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>hexo</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>vue2和vue3配置proxy代理</title>
     <link href="/2023/04/25/vue2%E5%92%8Cvue3%E9%85%8D%E7%BD%AEproxy%E4%BB%A3%E7%90%86/"/>
     <url>/2023/04/25/vue2%E5%92%8Cvue3%E9%85%8D%E7%BD%AEproxy%E4%BB%A3%E7%90%86/</url>
