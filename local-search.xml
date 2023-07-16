@@ -4,6 +4,56 @@
   
   
   <entry>
+    <title>promise</title>
+    <link href="/2023/07/15/promise/"/>
+    <url>/2023/07/15/promise/</url>
+    
+    <content type="html"><![CDATA[<h1 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h1><p>Promise 是异步编程的一种解决方案，它解决异步 回调地狱 的问题。</p><h5 id="回调地狱：一个回调函数嵌套另外一个回调函数，多个嵌套会形成回调地狱的问题"><a href="#回调地狱：一个回调函数嵌套另外一个回调函数，多个嵌套会形成回调地狱的问题" class="headerlink" title="回调地狱：一个回调函数嵌套另外一个回调函数，多个嵌套会形成回调地狱的问题"></a>回调地狱：一个回调函数嵌套另外一个回调函数，多个嵌套会形成回调地狱的问题</h5><p>比如我们发送三个 ajax 请求</p><ul><li><p>第一个正常发送</p></li><li><p>第二个请求需要第一个请求的结果中的某一个值作为参数</p></li><li><p>第三个请求需要第二个请求的结果中的某一个值作为参数</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title function_">ajax</span>(&#123;<br><span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;我是第一个请求&#x27;</span>,<br>success (res) &#123;<br><span class="hljs-comment">// 现在发送第二个请求</span><br><span class="hljs-title function_">ajax</span>(&#123;<br><span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;我是第二个请求&#x27;</span>，<br><span class="hljs-attr">data</span>: &#123; <span class="hljs-attr">a</span>: res.<span class="hljs-property">a</span>, <span class="hljs-attr">b</span>: res.<span class="hljs-property">b</span> &#125;,<br>success (res2) &#123;<br><span class="hljs-comment">// 进行第三个请求</span><br><span class="hljs-title function_">ajax</span>(&#123;<br><span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;我是第三个请求&#x27;</span>,<br><span class="hljs-attr">data</span>: &#123; <span class="hljs-attr">a</span>: res2.<span class="hljs-property">a</span>, <span class="hljs-attr">b</span>: res2.<span class="hljs-property">b</span> &#125;,<br>success (res3) &#123;<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(res3)<br>&#125;<br>&#125;)<br>&#125;<br>&#125;)<br>&#125;<br>&#125;)<br></code></pre></td></tr></table></figure></li></ul><p>回调地狱，其实就是回调函数嵌套过多导致的</p><h5 id="Promise-对象的状态"><a href="#Promise-对象的状态" class="headerlink" title="Promise 对象的状态"></a>Promise 对象的状态</h5><p>Promise 对象通过自身的状态，来控制异步操作。Promise 实例具有三种状态。</p><pre><code class="hljs">异步操作未完成（pending）异步操作成功（fulfilled）异步操作失败（rejected）</code></pre><p>这三种的状态的变化途径只有两种。</p><pre><code class="hljs">从“未完成”到“成功”从“未完成”到“失败”</code></pre><p>一旦状态发生变化，就不会再发生改变。即 Promise 实例的状态变化只可能发生一次。</p><p>因此，Promise 的最终结果只有两种。</p><pre><code class="hljs">异步操作成功，Promise 实例传回一个值（value），状态变为fulfilled。异步操作失败，Promise 实例抛出一个错误（error），状态变为rejected。</code></pre><h5 id="Promise-all"><a href="#Promise-all" class="headerlink" title="Promise.all"></a>Promise.all</h5><p>Promise.all()方法用于将多个 Promise 实例，包装成一个新的 Promise 实例。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> p = <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">all</span>([p1, p2, p3])<br></code></pre></td></tr></table></figure><p>p 的状态由 p1,p2,p3 决定，分成两种情况。</p><p>（1）只有 p1、p2、p3 的状态都变成 fulfilled，p 的状态才会变成 fulfilled，此时 p1、p2、p3 的返回值组成一个数组，传递给 p 的回调函数。</p><p>（2）只要 p1、p2、p3 之中有一个被 rejected，p 的状态就变成 rejected，此时第一个被 reject 的实例的返回值，会传递给 p 的回调函数。</p><h5 id="Promise-race"><a href="#Promise-race" class="headerlink" title="Promise.race"></a>Promise.race</h5><p>Promise.race()方法同样是将多个 Promise 实例，包装成一个新的 Promise 实例。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> p = <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">race</span>([p1, p2, p3])<br></code></pre></td></tr></table></figure><p>上面代码中，只要 p1、p2、p3 之中有一个实例率先改变状态，p 的状态就跟着改变。那个率先改变的 Promise 实例的返回值，就传递给 p 的回调函数。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>blog</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>hexo</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>http相关</title>
+    <link href="/2023/07/15/http%E7%9B%B8%E5%85%B3/"/>
+    <url>/2023/07/15/http%E7%9B%B8%E5%85%B3/</url>
+    
+    <content type="html"><![CDATA[<h3 id="http-相关"><a href="#http-相关" class="headerlink" title="http 相关"></a>http 相关</h3><h4 id="http-协议"><a href="#http-协议" class="headerlink" title="http 协议"></a>http 协议</h4><p>http 协议：超文本传输协议，从服务器传输文本到本地浏览器的传送协议。基于 TCP/IP 通信协议传递数据。</p><h5 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h5><ol><li>由 HTTP 客户端发起请求，建立一个到服务器指定端口的 TCP。</li><li>HTTP 服务器在端口监听客户端发送的请求</li><li>服务端收到想客户端发送状态</li><li>客户端收到服务器返回的信息通过浏览器显示在用户的显示屏上，客户机与服务器断开连接</li></ol><h5 id="浏览器输入-URL-之后"><a href="#浏览器输入-URL-之后" class="headerlink" title="浏览器输入 URL 之后"></a>浏览器输入 URL 之后</h5><ol><li>输入之后，查询本地 IP 缓存，没有进行 DSN 查询，解析 IP</li><li>进行 TCP 三次握手</li><li>发起 http 请求</li><li>客户端接收数据，并渲染</li><li>关闭连接</li></ol><h4 id="三次握手四次挥手"><a href="#三次握手四次挥手" class="headerlink" title="三次握手四次挥手"></a>三次握手四次挥手</h4><p>三次握手和四次挥手之间就是 TCP 通信的连接与断开</p><p>三次握手：</p><p>​ 第一次握手： 客 发送 SYN 包 的数据包给服务端</p><p>​ 第二次握手： 服收 发送 SYN/ACK 的数据包，说我得到了</p><p>​ 第三次握手：客户端回传带有 ACK 的数据包 ，说结束了</p><p>四次挥手：</p><p>​ 第一次挥手：客户 发送 FIN 包 ，用来关闭客户端到服务端的数据传送 ，客户 进入 FIN_WAIT_1 状态</p><p>​ 第二次挥手：服务 收到 FIN ， 发送 ACK 给 客户，确认序号为收到序号+1 ，服务端进入到 CLOSE_WAIT 状态</p><p>​ 第三次挥手：服务 发送 FIN ，用来关闭服务端到客户端之间的数据传送，服务端进入 LAST_ACK 状态</p><p>​ 第四次挥手：客户 收到 FIN , 客户进入 TIME_WAIT 状态，发送 ACK 给 Server, 确认序号 +1， 服务端进入 CLOSE 状态</p><p>​</p><p>三次握手：</p><p>​ 客户端 ： 我喜欢你，我们在一起吧 。 好呀！：服务端</p><p>​ 客户端 ： 真的吗我很高兴</p><p>四次挥手：</p><p>​ 客户端 ： 我们该结束了 。（厌倦了） 渣男！：服务端</p><p>​ （客户端 ==冷暴力== 等待变成单身） 分手！：服务端</p><p>​ 客户端 ： 再见（恢复单身）</p><p>​</p><h4 id="xxs-和-csrf-攻击"><a href="#xxs-和-csrf-攻击" class="headerlink" title="xxs 和 csrf 攻击"></a>xxs 和 csrf 攻击</h4><table><thead><tr><th>xxs（跨站脚本攻击）</th><th>csrf（跨站点网站请求）</th></tr></thead><tbody><tr><td>在 web 页面中注入一些恶意的 script 标签</td><td>在用户登录之后，通过第三方网站获取用户的登陆凭证，避免进入网站之后进行用户验证</td></tr><tr><td>img / iframe 中的 src 不为空 ； 代码转译</td><td>通过登录验证，异地登陆需要验证码 ; 尽量使用 post 请求</td></tr><tr><td>反射型，存储型</td><td></td></tr></tbody></table>]]></content>
+    
+    
+    <categories>
+      
+      <category>blog</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>hexo</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>实现数组去重的方法</title>
     <link href="/2023/05/19/%E5%AE%9E%E7%8E%B0%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D%E7%9A%84%E6%96%B9%E6%B3%95/"/>
     <url>/2023/05/19/%E5%AE%9E%E7%8E%B0%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D%E7%9A%84%E6%96%B9%E6%B3%95/</url>
