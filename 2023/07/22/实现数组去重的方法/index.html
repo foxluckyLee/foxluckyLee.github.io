@@ -16,21 +16,21 @@
   <meta name="author" content="qiaolin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="PromisePromise 是异步编程的一种解决方案，它解决异步 回调地狱 的问题。 回调地狱：一个回调函数嵌套另外一个回调函数，多个嵌套会形成回调地狱的问题比如我们发送三个 ajax 请求  第一个正常发送  第二个请求需要第一个请求的结果中的某一个值作为参数  第三个请求需要第二个请求的结果中的某一个值作为参数 1234567891011121314151617181920ajax(&amp;#12">
+    <meta name="description" content="实现数组去重的方法1、set1234function repalit(arr)&amp;#123;    var a &#x3D; new set(arr)    return [...a]&amp;#125;  2、indexof (数组下标为-1 的 push 进去)123456789101112131415161718192021221、使用 forEachlet newArr &#x3D; []arr.forEach((it">
 <meta property="og:type" content="article">
-<meta property="og:title" content="promise">
-<meta property="og:url" content="http://foxluckylee.github.io/2023/07/15/promise/index.html">
+<meta property="og:title" content="实现数组去重的方法">
+<meta property="og:url" content="http://foxluckylee.github.io/2023/07/22/%E5%AE%9E%E7%8E%B0%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D%E7%9A%84%E6%96%B9%E6%B3%95/index.html">
 <meta property="og:site_name" content="qiaoling">
-<meta property="og:description" content="PromisePromise 是异步编程的一种解决方案，它解决异步 回调地狱 的问题。 回调地狱：一个回调函数嵌套另外一个回调函数，多个嵌套会形成回调地狱的问题比如我们发送三个 ajax 请求  第一个正常发送  第二个请求需要第一个请求的结果中的某一个值作为参数  第三个请求需要第二个请求的结果中的某一个值作为参数 1234567891011121314151617181920ajax(&amp;#12">
+<meta property="og:description" content="实现数组去重的方法1、set1234function repalit(arr)&amp;#123;    var a &#x3D; new set(arr)    return [...a]&amp;#125;  2、indexof (数组下标为-1 的 push 进去)123456789101112131415161718192021221、使用 forEachlet newArr &#x3D; []arr.forEach((it">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-07-15T12:17:33.359Z">
+<meta property="article:published_time" content="2023-07-21T22:34:49.921Z">
 <meta property="article:author" content="qiaoling">
 <meta property="article:tag" content="hexo">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>promise - qiaoling</title>
+  <title>实现数组去重的方法 - qiaoling</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -196,7 +196,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="promise"></span>
+            <span id="subtitle" data-typed-text="实现数组去重的方法"></span>
           
         </div>
 
@@ -207,8 +207,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-07-15 20:17" pubdate>
-          2023年7月15日 晚上
+        <time datetime="2023-07-22 06:34" pubdate>
+          2023年7月22日 早上
         </time>
       </span>
     
@@ -219,7 +219,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.2k 字
+          790 字
         
       </span>
     
@@ -230,7 +230,7 @@
         
         
         
-          11 分钟
+          7 分钟
         
       </span>
     
@@ -268,46 +268,18 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">promise</h1>
+            <h1 style="display: none">实现数组去重的方法</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h1><p>Promise 是异步编程的一种解决方案，它解决异步 回调地狱 的问题。</p>
-<h5 id="回调地狱：一个回调函数嵌套另外一个回调函数，多个嵌套会形成回调地狱的问题"><a href="#回调地狱：一个回调函数嵌套另外一个回调函数，多个嵌套会形成回调地狱的问题" class="headerlink" title="回调地狱：一个回调函数嵌套另外一个回调函数，多个嵌套会形成回调地狱的问题"></a>回调地狱：一个回调函数嵌套另外一个回调函数，多个嵌套会形成回调地狱的问题</h5><p>比如我们发送三个 ajax 请求</p>
-<ul>
-<li><p>第一个正常发送</p>
-</li>
-<li><p>第二个请求需要第一个请求的结果中的某一个值作为参数</p>
-</li>
-<li><p>第三个请求需要第二个请求的结果中的某一个值作为参数</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title function_">ajax</span>(&#123;<br><span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;我是第一个请求&#x27;</span>,<br>success (res) &#123;<br><span class="hljs-comment">// 现在发送第二个请求</span><br><span class="hljs-title function_">ajax</span>(&#123;<br><span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;我是第二个请求&#x27;</span>，<br><span class="hljs-attr">data</span>: &#123; <span class="hljs-attr">a</span>: res.<span class="hljs-property">a</span>, <span class="hljs-attr">b</span>: res.<span class="hljs-property">b</span> &#125;,<br>success (res2) &#123;<br><span class="hljs-comment">// 进行第三个请求</span><br><span class="hljs-title function_">ajax</span>(&#123;<br><span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;我是第三个请求&#x27;</span>,<br><span class="hljs-attr">data</span>: &#123; <span class="hljs-attr">a</span>: res2.<span class="hljs-property">a</span>, <span class="hljs-attr">b</span>: res2.<span class="hljs-property">b</span> &#125;,<br>success (res3) &#123;<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(res3)<br>&#125;<br>&#125;)<br>&#125;<br>&#125;)<br>&#125;<br>&#125;)<br></code></pre></td></tr></table></figure></li>
-</ul>
-<p>回调地狱，其实就是回调函数嵌套过多导致的</p>
-<h5 id="Promise-对象的状态"><a href="#Promise-对象的状态" class="headerlink" title="Promise 对象的状态"></a>Promise 对象的状态</h5><p>Promise 对象通过自身的状态，来控制异步操作。Promise 实例具有三种状态。</p>
-<pre><code class="hljs">异步操作未完成（pending）
-异步操作成功（fulfilled）
-异步操作失败（rejected）
-</code></pre>
-<p>这三种的状态的变化途径只有两种。</p>
-<pre><code class="hljs">从“未完成”到“成功”
-从“未完成”到“失败”
-</code></pre>
-<p>一旦状态发生变化，就不会再发生改变。即 Promise 实例的状态变化只可能发生一次。</p>
-<p>因此，Promise 的最终结果只有两种。</p>
-<pre><code class="hljs">异步操作成功，Promise 实例传回一个值（value），状态变为fulfilled。
-异步操作失败，Promise 实例抛出一个错误（error），状态变为rejected。
-</code></pre>
-<h5 id="Promise-all"><a href="#Promise-all" class="headerlink" title="Promise.all"></a>Promise.all</h5><p>Promise.all()方法用于将多个 Promise 实例，包装成一个新的 Promise 实例。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> p = <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">all</span>([p1, p2, p3])<br></code></pre></td></tr></table></figure>
+                <h1 id="实现数组去重的方法"><a href="#实现数组去重的方法" class="headerlink" title="实现数组去重的方法"></a>实现数组去重的方法</h1><h4 id="1、set"><a href="#1、set" class="headerlink" title="1、set"></a>1、set</h4><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs actionscript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">repalit</span><span class="hljs-params">(arr)</span>&#123;<br>    <span class="hljs-keyword">var</span> a = <span class="hljs-keyword">new</span> <span class="hljs-keyword">set</span>(arr)<br>    <span class="hljs-keyword">return</span> [...a]<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>p 的状态由 p1,p2,p3 决定，分成两种情况。</p>
-<p>（1）只有 p1、p2、p3 的状态都变成 fulfilled，p 的状态才会变成 fulfilled，此时 p1、p2、p3 的返回值组成一个数组，传递给 p 的回调函数。</p>
-<p>（2）只要 p1、p2、p3 之中有一个被 rejected，p 的状态就变成 rejected，此时第一个被 reject 的实例的返回值，会传递给 p 的回调函数。</p>
-<h5 id="Promise-race"><a href="#Promise-race" class="headerlink" title="Promise.race"></a>Promise.race</h5><p>Promise.race()方法同样是将多个 Promise 实例，包装成一个新的 Promise 实例。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> p = <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">race</span>([p1, p2, p3])<br></code></pre></td></tr></table></figure>
+<h4 id="2、indexof-数组下标为-1-的-push-进去"><a href="#2、indexof-数组下标为-1-的-push-进去" class="headerlink" title="2、indexof (数组下标为-1 的 push 进去)"></a>2、indexof (数组下标为-1 的 push 进去)</h4><figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs arcade"><span class="hljs-number">1</span>、使用 forEach<br><br>let newArr = []<br>arr.forEach(<span class="hljs-function">(<span class="hljs-params">item,index</span>)=&gt;</span>&#123;<br>    <span class="hljs-keyword">if</span>(newArr.<span class="hljs-built_in">indexof</span>(item) === <span class="hljs-number">-1</span>)&#123;<br>        newArr.<span class="hljs-built_in">push</span>(item)<br>    &#125;<br>&#125;)<br><br><br><span class="hljs-number">2</span>、使用<span class="hljs-built_in">reduce</span><br> let newArr = arr.<span class="hljs-built_in">reduce</span>(<span class="hljs-function">(<span class="hljs-params">cur,arr</span>)=&gt;</span>&#123;<br>     <span class="hljs-keyword">if</span>(cur.<span class="hljs-built_in">indexof</span>(cur) ===  <span class="hljs-number">-1</span> )&#123;<br>         cur.<span class="hljs-built_in">push</span>(cur)<br>     &#125;<br>     <span class="hljs-keyword">return</span> cur<br> &#125;,[])<br><br><span class="hljs-number">3</span>、使用<span class="hljs-built_in">filter</span>()<br>const newArr = arr.<span class="hljs-built_in">filter</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">item,index,self</span>)&#123;<br>    <span class="hljs-keyword">return</span> self.<span class="hljs-built_in">indexof</span>(item) === index<br>&#125;)<br></code></pre></td></tr></table></figure>
 
-<p>上面代码中，只要 p1、p2、p3 之中有一个实例率先改变状态，p 的状态就跟着改变。那个率先改变的 Promise 实例的返回值，就传递给 p 的回调函数。</p>
+<h4 id="3、includes-用-reduce-做累加计算"><a href="#3、includes-用-reduce-做累加计算" class="headerlink" title="3、includes 用 reduce 做累加计算"></a>3、includes 用 reduce 做累加计算</h4><figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs haxe">const <span class="hljs-keyword">new</span><span class="hljs-type">Arr</span> = arr.reduce((<span class="hljs-keyword">new</span><span class="hljs-type">Arr</span>,index) =&gt; &#123;<br>    <span class="hljs-keyword">if</span>(!<span class="hljs-keyword">new</span><span class="hljs-type">Arr</span>.includes(index))&#123;<br>        <span class="hljs-keyword">new</span><span class="hljs-type">Arr</span>.push(item)<br>    &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<h4 id="4、双-for-＋-splice"><a href="#4、双-for-＋-splice" class="headerlink" title="4、双 for ＋ splice"></a>4、双 for ＋ splice</h4><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs scss">let<br><span class="hljs-built_in">for</span>(let i = <span class="hljs-number">0</span> ; i &lt; arr.length ; i ++)&#123;<br>    <span class="hljs-built_in">for</span>( let j  = i+ <span class="hljs-number">1</span> ; i&lt; arr.length ; j++)&#123;<br>        <span class="hljs-built_in">if</span>(arr[i] == arr[j])&#123;<br>            arr<span class="hljs-selector-class">.splice</span>(i , <span class="hljs-number">1</span>)<br>            <span class="hljs-selector-tag">i</span>--<br>            j--<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
                 
               </div>
@@ -353,8 +325,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>promise</div>
-      <div>http://foxluckylee.github.io/2023/07/15/promise/</div>
+      <div>实现数组去重的方法</div>
+      <div>http://foxluckylee.github.io/2023/07/22/实现数组去重的方法/</div>
     </div>
     <div class="license-meta">
       
@@ -403,8 +375,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/07/15/http%E7%9B%B8%E5%85%B3/" title="http相关">
-                        <span class="hidden-mobile">http相关</span>
+                      <a href="/2023/07/22/vue2%E5%92%8Cvue3%E9%85%8D%E7%BD%AEproxy%E4%BB%A3%E7%90%86/" title="vue2和vue3配置proxy代理">
+                        <span class="hidden-mobile">vue2和vue3配置proxy代理</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
